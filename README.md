@@ -28,6 +28,7 @@
 - removeStudent()
 - showStudent()
 - getResult()
+- changeRank()
 - getAdmission()
 
 2. **Branch**
