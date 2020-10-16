@@ -4,13 +4,13 @@
  * and open the template in the editor.
  */
 package scs;
-
+import java.util.*;
 /**
  *
  * @author rahul
  */
 public class Main {
     public static void main(String args[]) {
-        
+        Scanner sc = new Scanner(System.in);
     }
 }

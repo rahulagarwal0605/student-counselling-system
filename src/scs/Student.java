@@ -30,6 +30,14 @@ public class Student {
         this.category = category;
     }
     
+    public void addStudent() {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Enter Student Details");
+        System.out.print("Enter Name: ");
+        name = sc.next();
+        System.out.print("Enter Date of Birth: ");
+    }
+    
     static void addStudent(Student s) {
         
     }
