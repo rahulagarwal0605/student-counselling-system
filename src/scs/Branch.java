@@ -12,4 +12,6 @@ package scs;
 public class Branch {
     static int branchID;
     String branchName;
+    
+    
 }
