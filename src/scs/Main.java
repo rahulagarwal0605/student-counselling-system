@@ -46,6 +46,7 @@ public class Main {
             else {
                 System.out.println("Creating Database...");
                 stmt.execute("create database scs");
+                initDB();
             }
         }
         catch(Exception e){
