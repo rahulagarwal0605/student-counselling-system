@@ -13,7 +13,9 @@ import java.util.Scanner;
  */
 public class Main {
     static String user, pass;
-    static Scanner sc = new Scanner(System.in);
+    static Connection con = null;
+    static Statement stmt = null;
+    static ResultSet rs = null;
     
     static {
         user = "root";
@@ -21,19 +23,27 @@ public class Main {
     }
     
     static void initDB() {
-        
+        try {
+            stmt.execute("use scs");
+        }
+        catch(SQLException e){
+            e.printStackTrace();
+        }
+        Branch.initDB(stmt, rs);
     }
     
     static void conDB() {
+        Scanner sc = new Scanner(System.in);
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
             System.out.print("Enter Username : ");
             user = sc.next();
             System.out.print("Enter Password : ");
             pass = sc.next();
-            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306",user,pass);  
-            Statement stmt = con.createStatement();  
-            ResultSet rs = stmt.executeQuery("show databases");
+            System.out.println("Connecting to database...");
+            con = DriverManager.getConnection("jdbc:mysql://localhost:3306","root","r.agarwal"); // update
+            stmt = con.createStatement();  
+            rs = stmt.executeQuery("show databases");
             boolean flag = false;
             while(rs.next()) {
                 if(rs.getString(1).equals("scs")) {
@@ -47,10 +57,17 @@ public class Main {
                 System.out.println("Creating Database...");
                 stmt.execute("create database scs");
                 initDB();
+                System.out.println("Database created successfully...");
             }
         }
+        catch(SQLException e){
+            e.printStackTrace();
+        }
         catch(Exception e){
-            System.out.println(e);
+            e.printStackTrace();
+        }
+        finally {
+            sc.close();
         }
     }
     public static void main(String[] args) {
