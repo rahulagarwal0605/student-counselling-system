@@ -1,0 +1,1 @@
+('Agricultural Engineering', 4, 'Bachelor of Technology'), ('Computer Science and Engineering', 4, 'Bachelor of Technology', 'Integrated B. Tech.(IT) and M. Tech (IT)', 5, 's, Integrated B. Tech. and M. Tech. /MBA'), ()

@@ -77,7 +77,7 @@
 - PK: cid, roll_num
 - FK: roll_num references Student(roll_num)
 
-3. Branch (bid, branch_name)
+3. Branch (bid, branch_name, duration, degree)
 - PK: bid
 
 4. Institute (iid, institute_name, city)
