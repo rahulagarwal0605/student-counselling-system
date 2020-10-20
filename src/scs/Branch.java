@@ -53,11 +53,13 @@ public class Branch {
     }
     
     static void showAllBranch(Statement stmt) {
+        System.out.println("*****Branches*****");
         try {
             ResultSet rs = stmt.executeQuery("select * from branch");
             while(rs.next()) {
                 System.out.println(rs.getInt(1) + " " + rs.getString(2) + " " + rs.getInt(3) + " " + rs.getString(4));
             }
+            System.out.println();
             rs.close();
         }
         catch(SQLException e){

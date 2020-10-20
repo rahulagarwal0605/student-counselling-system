@@ -26,8 +26,6 @@ public class Main {
     static void initDB() {
         String data = "";
         try {
-            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/scs?allowMultiQueries=true",user,pass);
-            stmt = con.createStatement();  
             data = new String(Files.readAllBytes(Paths.get("src/scs/initDB.txt")));
             stmt.execute(data);
         }
@@ -42,7 +40,7 @@ public class Main {
     static void conDB() {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
-            con = DriverManager.getConnection("jdbc:mysql://localhost:3306",user,pass);
+            con = DriverManager.getConnection("jdbc:mysql://localhost:3306?allowMultiQueries=true",user,pass);
             stmt = con.createStatement();  
             ResultSet rs = stmt.executeQuery("show databases");
             boolean flag = false;
@@ -54,13 +52,15 @@ public class Main {
             rs.close();
             if(flag) {
                 System.out.println("Database already created!");
+                con = DriverManager.getConnection("jdbc:mysql://localhost:3306/scs?allowMultiQueries=true",user,pass);
+                stmt = con.createStatement();
             }
             else {
                 System.out.println("Creating Database...");
-                stmt.execute("create database scs"); 
+                stmt.execute("create database scs");
                 initDB();
                 System.out.println("Database created successfully...");
-            }
+            }  
         }
         catch(SQLException e){
             e.printStackTrace();
@@ -71,7 +71,6 @@ public class Main {
     }
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        System.out.println("Student Counselling System");
         System.out.print("Enter Username : ");
         user = sc.next();
         System.out.print("Enter Password : ");
@@ -80,7 +79,8 @@ public class Main {
         conDB();
         sc.close();
         //----------------------------------------------------------------------
-        Branch.addBranch("CSE", 4, "B.tech", stmt);
+        System.out.println("*****Student Counselling System*****\n");
         Branch.showAllBranch(stmt);
+        Institute.showAllInstitute(stmt);
     }
 }
