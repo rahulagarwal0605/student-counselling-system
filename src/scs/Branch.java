@@ -17,25 +17,13 @@ public class Branch {
     int duration;
     String degree;
     
-    static void initDB(Statement stmt, ResultSet rs) {
-        try {
-            rs = stmt.executeQuery("select * from branch");
-            while(rs.next()) {
-                System.out.println(rs.getInt(1) + " " + rs.getString(2) + " " + rs.getInt(3) + " " + rs.getString(4));
-            }
-        }
-        catch(SQLException e){
-            e.printStackTrace();
-        }
-    }
-    
     Branch(String name, int dur, String deg) {
         this.branchName = name;
         this.duration = dur;
         this.degree = deg;
     }
 
-    static void addBranch() {
+    static void addBranch(Statement stmt) {
         String tempName, tempDeg;
         int tempDur;
         Scanner sc = new Scanner(System.in);
@@ -47,10 +35,33 @@ public class Branch {
         tempDeg = sc.next();
         sc.close();
         Branch tempBranch = new Branch(tempName, tempDur, tempDeg);
-        addBranch(tempBranch);
+        addBranch(tempBranch, stmt);
     }
     
-    static void addBranch(Branch b){
-        
+    static void addBranch(String name, int dur, String deg, Statement stmt) {
+        Branch tempBranch = new Branch(name, dur, deg);
+        addBranch(tempBranch, stmt);
+    }
+    
+    static void addBranch(Branch b, Statement stmt){
+        try {
+            stmt.execute("insert into branch (branch_name, duration, degree) values ('" + b.branchName + "', " + b.duration + ", '" + b.degree + "')");
+        }
+        catch(SQLException e) {
+            e.printStackTrace();
+        }
+    }
+    
+    static void showAllBranch(Statement stmt) {
+        try {
+            ResultSet rs = stmt.executeQuery("select * from branch");
+            while(rs.next()) {
+                System.out.println(rs.getInt(1) + " " + rs.getString(2) + " " + rs.getInt(3) + " " + rs.getString(4));
+            }
+            rs.close();
+        }
+        catch(SQLException e){
+            e.printStackTrace();
+        }
     }
 }

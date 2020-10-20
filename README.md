@@ -43,6 +43,7 @@
 - addBranch()
 - removeBranch()
 - showBranch()
+- showAllBranch();
 
 3. **Institutes**
 

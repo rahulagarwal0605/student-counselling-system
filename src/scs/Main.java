@@ -17,7 +17,6 @@ public class Main {
     static String user, pass;
     static Connection con = null;
     static Statement stmt = null;
-    static ResultSet rs = null;
     
     static {
         user = "root";
@@ -38,7 +37,6 @@ public class Main {
         catch(IOException e) {
             e.printStackTrace();
         }
-        Branch.initDB(stmt, rs);
     }
     
     static void conDB() {
@@ -46,13 +44,14 @@ public class Main {
             Class.forName("com.mysql.cj.jdbc.Driver");
             con = DriverManager.getConnection("jdbc:mysql://localhost:3306",user,pass);
             stmt = con.createStatement();  
-            rs = stmt.executeQuery("show databases");
+            ResultSet rs = stmt.executeQuery("show databases");
             boolean flag = false;
             while(rs.next()) {
                 if(rs.getString(1).equals("scs")) {
                     flag = true;
                 }
             }
+            rs.close();
             if(flag) {
                 System.out.println("Database already created!");
             }
@@ -81,6 +80,7 @@ public class Main {
         conDB();
         sc.close();
         //----------------------------------------------------------------------
-        
+        Branch.addBranch("CSE", 4, "B.tech", stmt);
+        Branch.showAllBranch(stmt);
     }
 }
