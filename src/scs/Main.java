@@ -70,6 +70,7 @@ public class Main {
         }
     }
     public static void main(String[] args) {
+        System.out.println("*****Student Counselling System*****\n");
         Scanner sc = new Scanner(System.in);
         System.out.print("Enter Username : ");
         user = sc.next();
@@ -79,7 +80,6 @@ public class Main {
         conDB();
         sc.close();
         //----------------------------------------------------------------------
-        System.out.println("*****Student Counselling System*****\n");
         Branch.showAllBranch(stmt);
         Institute.showAllInstitute(stmt);
     }
