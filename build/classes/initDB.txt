@@ -1,5 +1,3 @@
-use scs;
-
 create table branch (
     bid int not null auto_increment, 
     branch_name varchar(255) not null, 

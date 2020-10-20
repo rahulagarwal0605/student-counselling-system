@@ -6,6 +6,8 @@
 package scs;
 import java.sql.*;
 import java.util.Scanner;
+import java.nio.file.*;
+import java.io.*;
 
 /**
  *
@@ -22,13 +24,15 @@ public class Main {
     }
     
     static void initDB() {
+        String data = "";
         try {
-            Scanner data = new Scanner(Main.class.getResourceAsStream("/initDB.txt"));
-            data.useDelimiter("\\Z");
-            stmt.execute(data.next());
-            data.close();
+            data = new String(Files.readAllBytes(Paths.get("src/scs/initDB.txt")));
+            stmt.execute(data);
         }
         catch(SQLException e){
+            e.printStackTrace();
+        }
+        catch(IOException e) {
             e.printStackTrace();
         }
     }
@@ -48,7 +52,6 @@ public class Main {
             rs.close();
             if(flag) {
                 System.out.println("Database already created!");
-                conDB();
             }
             else {
                 System.out.println("Creating Database...");
@@ -85,6 +88,7 @@ public class Main {
         sc.close();
         System.out.println("Connecting to database...");
         createDB();
+        conDB();
         //----------------------------------------------------------------------
         Branch.showAllBranch(stmt);
         Institute.showAllInstitute(stmt);
