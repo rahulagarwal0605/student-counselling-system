@@ -36,6 +36,8 @@
     *Properties:*
 - branchID: int
 - branchName: String
+- duration: int
+- degree: String
 
     *Methods:*
 - addBranch()

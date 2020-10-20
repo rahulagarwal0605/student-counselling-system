@@ -14,6 +14,8 @@ import java.sql.*;
 public class Branch {
     int branchID;
     String branchName;
+    int duration;
+    String degree;
     
     static void initDB(Statement stmt, ResultSet rs) {
         try {
@@ -27,24 +29,28 @@ public class Branch {
         }
     }
     
-    Branch(int id, String name) {
-        this.branchID = id;
+    Branch(String name, int dur, String deg) {
         this.branchName = name;
+        this.duration = dur;
+        this.degree = deg;
     }
 
     static void addBranch() {
-        int tempID;
-        String tempName;
+        String tempName, tempDeg;
+        int tempDur;
         Scanner sc = new Scanner(System.in);
-        System.out.println("Enter BranchID");
-        tempID = sc.nextInt();
+        System.out.print("Enter Branch Name: ");
         tempName = sc.next();
-        Branch tempBranch = new Branch(tempID, tempName);
-        
+        System.out.print("Enter Branch Duration: ");
+        tempDur = sc.nextInt();
+        System.out.print("Enter Degree: ");
+        tempDeg = sc.next();
+        sc.close();
+        Branch tempBranch = new Branch(tempName, tempDur, tempDeg);
+        addBranch(tempBranch);
     }
     
     static void addBranch(Branch b){
         
     }
-    
 }
