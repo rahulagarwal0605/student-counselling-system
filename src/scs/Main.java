@@ -6,6 +6,8 @@
 package scs;
 import java.sql.*;
 import java.util.Scanner;
+import java.nio.file.*;
+import java.io.*;
 
 /**
  *
@@ -23,8 +25,14 @@ public class Main {
     }
     
     static void initDB() {
+        String data = "";
         try {
-            stmt.execute("use scs");
+            data = new String(Files.readAllBytes(Paths.get("src/scs/initDB.txt")));
+            System.out.println(data);
+            stmt.execute(data);
+        }
+        catch(IOException e) {
+            e.printStackTrace();
         }
         catch(SQLException e){
             e.printStackTrace();
@@ -33,14 +41,8 @@ public class Main {
     }
     
     static void conDB() {
-        Scanner sc = new Scanner(System.in);
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
-            System.out.print("Enter Username : ");
-            user = sc.next();
-            System.out.print("Enter Password : ");
-            pass = sc.next();
-            System.out.println("Connecting to database...");
             con = DriverManager.getConnection("jdbc:mysql://localhost:3306","root","r.agarwal"); // update
             stmt = con.createStatement();  
             rs = stmt.executeQuery("show databases");
@@ -52,10 +54,14 @@ public class Main {
             }
             if(flag) {
                 System.out.println("Database already created!");
+                con = DriverManager.getConnection("jdbc:mysql://localhost:3306/scs?allowMultiQueries=true","root","r.agarwal");
+                stmt = con.createStatement();  
             }
             else {
                 System.out.println("Creating Database...");
                 stmt.execute("create database scs");
+                con = DriverManager.getConnection("jdbc:mysql://localhost:3306/scs?allowMultiQueries=true","root","r.agarwal");
+                stmt = con.createStatement();  
                 initDB();
                 System.out.println("Database created successfully...");
             }
@@ -66,12 +72,16 @@ public class Main {
         catch(Exception e){
             e.printStackTrace();
         }
-        finally {
-            sc.close();
-        }
     }
     public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
         System.out.println("Student Counselling System");
+        System.out.print("Enter Username : ");
+        user = sc.next();
+        System.out.print("Enter Password : ");
+        pass = sc.next();
+        System.out.println("Connecting to database...");
         conDB();
+        sc.close();
     }
 }

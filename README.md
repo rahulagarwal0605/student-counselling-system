@@ -68,6 +68,11 @@
 - removeInstitute()
 - showInstitute()
 
+6. **Main**
+
+    *Methods:*
+- 
+
 ## **Databases**
 
 1. Student (name, dob, roll_num, rank, quota, gender, category)
