@@ -15,7 +15,7 @@
 
     *Properties:*
 - name: String
-- dob: Date
+- dob: String
 - rollNum: int
 - rank: int
 - quota: String
@@ -27,8 +27,9 @@
 - addStudent()
 - removeStudent()
 - showStudent()
+- addPreference()
+- changePreference()
 - getResult()
-- changeRank()
 - getAdmission()
 
 2. **Branch**

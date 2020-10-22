@@ -12,7 +12,7 @@ import java.util.*;
  */
 public class Student {
     String name;
-    Date dob;
+    String dob;
     int rollNum;
     int rank;
     String quota;
@@ -20,7 +20,7 @@ public class Student {
     String category;
     Branch Preferences;
     
-    public Student(String name, Date dob, int rollNum, int rank, String quota, char gender, String category) {
+    Student(String name, String dob, int rollNum, int rank, String quota, char gender, String category) {
         this.name = name;
         this.dob = dob;
         this.rollNum = rollNum;
@@ -30,12 +30,26 @@ public class Student {
         this.category = category;
     }
     
-    public void addStudent() {
+    static void addStudent() {
+        String name;
+        String dob;
+        int rollNum;
+        int rank;
+        String quota;
+        char gender;
+        String category;
         Scanner sc = new Scanner(System.in);
         System.out.println("Enter Student Details");
         System.out.print("Enter Name: ");
         name = sc.next();
         System.out.print("Enter Date of Birth: ");
+        dob = sc.next();
+        System.out.print("Enter Roll Number: ");
+        rollNum = sc.nextInt();
+        System.out.print("Enter Rank: ");
+        rank = sc.nextInt();
+        System.out.print("Enter Quota (Al/HS/OS): ");
+        dob = sc.next();
     }
     
     static void addStudent(Student s) {
