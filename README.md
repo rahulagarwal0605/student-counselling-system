@@ -52,6 +52,7 @@
 - instituteID: int
 - instituteName: String
 - city: String
+- state: String
 
     *Methods:*
 - addInstitute()
