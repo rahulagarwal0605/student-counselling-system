@@ -90,7 +90,7 @@
 3. Branch (bid, branch_name, duration, degree)
 - PK: bid
 
-4. Institute (iid, institute_name, city)
+4. Institute (iid, institute_name, city, state)
 - PK: iid
 
 5. GovernmentInstitutes (iid, bid, quota, seat_pool, category, or, cr, total_seats, alloated_seats, vacant_seats)
@@ -108,5 +108,3 @@
 - FK: roll_num references Student(roll_num)
 - FK: iid references Institute(iid)
 - FK: bid references Branch(bid)
-
-
