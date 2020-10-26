@@ -40,8 +40,8 @@ public class Branch {
     }
     
     static void addBranch(String name, int dur, String deg, Statement stmt) {
-        Branch tempBranch = new Branch(name, dur, deg);
-        addBranch(tempBranch, stmt);
+        Branch b = new Branch(name, dur, deg);
+        addBranch(b, stmt);
     }
     
     static void addBranch(Branch b, Statement stmt){

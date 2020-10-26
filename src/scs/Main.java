@@ -82,10 +82,9 @@ public class Main {
         user = sc.next();
         System.out.print("Enter Password : ");
         pass = sc.next();
-        sc.close();
         System.out.println("Connecting to database...");
         createDB();
         //----------------------------------------------------------------------
-        
+        Student.addStudent(12345, "Rahul Agarwal", "2001-05-06", 10000, "M", "gen", stmt);
     }
 }

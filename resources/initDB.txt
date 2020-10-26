@@ -1448,14 +1448,15 @@ INSERT INTO josaa VALUES (1,1,2,'AI','Gender-Neutral',47745,58664,7656,7839,1674
 (1260,83,63,'OS','Female-Only',40488,44236,NULL,NULL,15461,15461,7085,7085,NULL,NULL);
 
 CREATE TABLE student(
-   sid      INTEGER  NOT NULL PRIMARY KEY AUTO_INCREMENT
-  ,roll_num	INTEGER  NOT NULL
-  ,name			VARCHAR(255) NOT NULL
-  ,dob      DATE
-  ,state    VARCHAR(255) NOT NULL
-  ,gender   ENUM('M', 'F', 'O') NOT NULL
-  ,category	ENUM('gen', 'gen_ews', 'obc', 'sc', 'st') NOT NULL
-  ,exam_rank			INTEGER NOT NULL
+   sid        INTEGER  NOT NULL PRIMARY KEY AUTO_INCREMENT
+  ,roll_num	  INTEGER  NOT NULL
+  ,name			  VARCHAR(255) NOT NULL
+  ,dob        DATE
+  ,state_id   INTEGER NOT NULL
+  ,gender     ENUM('M', 'F', 'O') NOT NULL
+  ,category   ENUM('gen', 'gen_ews', 'obc', 'sc', 'st') NOT NULL
+  ,exam_rank  INTEGER NOT NULL
+  ,FOREIGN KEY (state_id) REFERENCES state(id)
 );
 
 CREATE TABLE choice(

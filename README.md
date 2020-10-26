@@ -91,20 +91,24 @@
 3. Branch (bid, branch_name, duration, degree)
 - PK: bid
 
-4. Institute (iid, institute_name, city, state)
-- PK: iid
+4. State (id, state)
+- PK: id
 
-5. GovernmentInstitutes (iid, bid, quota, seat_pool, category, or, cr, total_seats, alloated_seats, vacant_seats)
+5. Institute (iid, institute_name, city, state_id)
+- PK: iid
+- FK: state_id references State(id)
+
+6. GovernmentInstitutes (iid, bid, quota, seat_pool, category, or, cr, total_seats, alloated_seats, vacant_seats)
 - PK: iid, bid, quota, seat_pool, category
 - FK: iid references Institute(iid)
 - FK: bid references Branch(bid)
 
-6. PrivateInstitutes (iid, bid, or, cr, total_seats, alloated_seats, vacant_seats)
+7. PrivateInstitutes (iid, bid, or, cr, total_seats, alloated_seats, vacant_seats)
 - PK: iid, bid
 - FK: iid references Institute(iid)
 - FK: bid references Branch(bid)
 
-7. AdmittedStudents (aid, roll_num, iid, bid)
+8. AdmittedStudents (aid, roll_num, iid, bid)
 - PK: aid, roll_num
 - FK: roll_num references Student(roll_num)
 - FK: iid references Institute(iid)
