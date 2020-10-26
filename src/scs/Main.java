@@ -78,15 +78,19 @@ public class Main {
     public static void main(String[] args) {
         System.out.println("*****Student Counselling System*****\n");
         Scanner sc = new Scanner(System.in);
+        System.out.println("******************************");
         System.out.print("Enter Username : ");
         user = sc.next();
         System.out.print("Enter Password : ");
         pass = sc.next();
+        System.out.println("******************************\n");
         System.out.println("Connecting to database...");
         createDB();
+        System.out.println();
         //----------------------------------------------------------------------
-        Student s = new Student(12345, "Rahul Agarwal", "2001-05-06", 10000, "M", "gen");
-        Student.addStudent(s, stmt);
-        s.addPreference(stmt);
+        Student s = new Student();
+        s.addStudent(stmt);
+        System.out.println("\n***************Result***************");
+        s.getResult(stmt);
     }
 }
