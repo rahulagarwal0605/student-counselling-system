@@ -1448,8 +1448,7 @@ INSERT INTO josaa VALUES (1,1,2,'AI','Gender-Neutral',47745,58664,7656,7839,1674
 (1260,83,63,'OS','Female-Only',40488,44236,NULL,NULL,15461,15461,7085,7085,NULL,NULL);
 
 CREATE TABLE student(
-   sid        INTEGER  NOT NULL PRIMARY KEY AUTO_INCREMENT
-  ,roll_num	  INTEGER  NOT NULL
+   roll_num	  INTEGER  NOT NULL PRIMARY KEY
   ,name			  VARCHAR(255) NOT NULL
   ,dob        DATE
   ,state_id   INTEGER NOT NULL
@@ -1461,8 +1460,8 @@ CREATE TABLE student(
 
 CREATE TABLE choice(
    cid      INTEGER  NOT NULL PRIMARY KEY AUTO_INCREMENT
-  ,sid      INTEGER  NOT NULL
+  ,roll_num INTEGER  NOT NULL
   ,bid      INTEGER  NOT NULL
-  ,FOREIGN KEY (sid) REFERENCES student(sid)
+  ,FOREIGN KEY (roll_num) REFERENCES student(roll_num)
   ,FOREIGN KEY (bid) REFERENCES branch(bid)
 );

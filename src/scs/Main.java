@@ -85,6 +85,8 @@ public class Main {
         System.out.println("Connecting to database...");
         createDB();
         //----------------------------------------------------------------------
-        Student.addStudent(12345, "Rahul Agarwal", "2001-05-06", 10000, "M", "gen", stmt);
+        Student s = new Student(12345, "Rahul Agarwal", "2001-05-06", 10000, "M", "gen");
+        Student.addStudent(s, stmt);
+        s.addPreference(stmt);
     }
 }

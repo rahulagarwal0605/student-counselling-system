@@ -21,7 +21,6 @@
 - state: String
 - gender: char
 - category: String
-- Preferences: Branch[2]
 
     *Methods:*
 - addStudent()

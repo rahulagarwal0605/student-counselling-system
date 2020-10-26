@@ -20,7 +20,6 @@ public class Student {
     int stateId;
     String gender;
     String category;
-    Branch preferences;
     
     Student(int rollNum, String name, String dob, int rank, String gender, String category) {
         this.rollNum = rollNum;
@@ -63,6 +62,7 @@ public class Student {
     }
     static void addStudent(Student s, Statement stmt) {
         try {
+            System.out.println();
             ResultSet rs = stmt.executeQuery("select * from state");
             while(rs.next()) {
                 System.out.println(rs.getInt(1) + " " + rs.getString(2));
@@ -76,10 +76,43 @@ public class Student {
         Scanner sc = new Scanner(System.in);
         s.stateId = sc.nextInt();
         try {
-            stmt.execute("insert into student (roll_num, name, dob, state_id, gender, category, exam_rank) values (" + s.rollNum + ", '" + s.name + "', '" + s.dob + "', " + s.stateId + ", '" + s.gender + "', '" + s.category + "', " + s.rank + ")");
+            stmt.execute("insert into student values (" + s.rollNum + ", '" + s.name + "', '" + s.dob + "', " + s.stateId + ", '" + s.gender + "', '" + s.category + "', " + s.rank + ")");
         }
         catch(SQLException e) {
             e.printStackTrace();
         }
     }
+    
+    void addPreference(Statement stmt) {
+        addPreference(this, stmt);
+    }
+    
+    static void addPreference(Student s, Statement stmt) {
+        try {
+            System.out.println();
+            ResultSet rs = stmt.executeQuery("select * from branch");
+            while(rs.next()) {
+                System.out.println(rs.getInt(1) + " " + rs.getString(2) + " " + rs.getInt(3) + " " + rs.getString(4));
+            }
+            rs.close();
+        }
+        catch(SQLException e){
+            e.printStackTrace();
+        }
+        System.out.print("Enter total count of your preferred branches: ");
+        Scanner sc = new Scanner(System.in);
+        int count = sc.nextInt();
+        for(int i=0; i<count; i++) {
+            System.out.print("Enter branch ID: ");
+            int id = sc.nextInt();
+            try {
+                stmt.execute("insert into choice (roll_num, bid)  values (" + s.rollNum + ", " + id + ")");
+            }
+            catch(SQLException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+ 
+    
 }
