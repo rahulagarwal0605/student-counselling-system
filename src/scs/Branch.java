@@ -18,6 +18,7 @@ public class Branch {
     String degree;
     
     Branch(String name, int dur, String deg) {
+        this.branchID = 0;
         this.branchName = name;
         this.duration = dur;
         this.degree = deg;

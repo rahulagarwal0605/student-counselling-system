@@ -86,16 +86,6 @@ public class Main {
         System.out.println("Connecting to database...");
         createDB();
         //----------------------------------------------------------------------
-        try {
-            ResultSet rs = stmt.executeQuery("SELECT id,institute_name,branch_name,quota,seat_pool,gen_or,gen_cr,gen_ews_or,gen_ews_cr,obc_or,obc_cr,sc_or,sc_cr,st_or,st_cr FROM ((josaa INNER JOIN institute ON josaa.iid = institute.iid) INNER JOIN branch ON josaa.bid = branch.bid) order by id;");
-            while(rs.next()) {
-                System.out.println(rs.getInt(1) + " " + rs.getString(2) + " " + rs.getString(3) + " " + rs.getString(4) + " " + rs.getString(5) + " " + rs.getInt(6) + " " + rs.getInt(7) + " " + rs.getInt(8) + " " + rs.getInt(9) + " " + rs.getInt(10) + " " + rs.getInt(11) + " " + rs.getInt(12) + " " + rs.getInt(13) + " " + rs.getInt(14) + " " + rs.getInt(15));
-            }
-            System.out.println();
-            rs.close();
-        }
-        catch(SQLException e){
-            e.printStackTrace();
-        }
+        
     }
 }

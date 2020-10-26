@@ -14,11 +14,11 @@
 1. **Student**
 
     *Properties:*
+- rollNum: int
 - name: String
 - dob: String
-- rollNum: int
 - rank: int
-- quota: String
+- state: String
 - gender: char
 - category: String
 - Preferences: Branch[2]
@@ -80,12 +80,13 @@
 
 ## **Databases**
 
-1. Student (name, dob, roll_num, rank, quota, gender, category)
-- PK: roll_num
+1. Student (sid, name, dob, roll_num, rank, state, gender, category)
+- PK: sid
 
-2. Choices (cid, roll_num, rank, prefrence_1, prefrence_2,)
-- PK: cid, roll_num
-- FK: roll_num references Student(roll_num)
+2. Choice (cid, sid, bid)
+- PK: cid
+- FK: sid references Student(sid)
+- FK: bid references Branch(bid)
 
 3. Branch (bid, branch_name, duration, degree)
 - PK: bid
