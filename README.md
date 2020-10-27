@@ -2,13 +2,6 @@
 
 ## **Student Counselling System**
 
-**Group(6) Members:**
-
-- 19ucs264 Rahul Agarwal
-- 19ucs181 Vaibhav Kagathara
-- 19ucs184 Manish Porwal
-- 19ucs211 Akshat Chhaparwal
-
 ## Classes
 
 1. **Student**
@@ -19,6 +12,7 @@
 - dob: String
 - rank: int
 - state: String
+- stateId: int
 - gender: char
 - category: String
 
