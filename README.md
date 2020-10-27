@@ -1,6 +1,4 @@
-# **Project Report**
-
-## **Student Counselling System**
+# **Student Counselling System**
 
 ## Classes
 
