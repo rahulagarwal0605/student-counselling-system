@@ -18,12 +18,12 @@
 
     *Methods:*
 - addStudent()
-- removeStudent()
-- showStudent()
 - addPreference()
 - changePreference()
 - getResult()
 - getAdmission()
+- removeStudent()
+- showStudent()
 
 2. **Branch**
 
@@ -51,8 +51,17 @@
 - addInstitute()
 - removeInstitute()
 - showInstitute()
+- showAllInstitute()
 
 4. **GovernmentInstitutes extends Institutes**
+
+    *Properties:*
+- branch: Branch
+- quota: String
+- seat_pool: String
+- category: String
+- openingRank: int
+- closingRank: int
 
     *Methods:*
 - addInstitute()
@@ -60,6 +69,11 @@
 - showInstitute()
 
 5. **PrivateInstitutes extends Institutes**
+
+    *Properties:*
+- branch: Branch
+- openingRank: int
+- closingRank: int
 
     *Methods:*
 - addInstitute()
@@ -69,16 +83,20 @@
 6. **Main**
 
     *Methods:*
-- 
+- initDB()
+- createDB()
+- conDB()
+- main()
 
 ## **Databases**
 
-1. Student (sid, name, dob, roll_num, rank, state, gender, category)
-- PK: sid
+1. Student (roll_num, name, dob, state_id, gender, category, exam_rank)
+- PK: roll_num
+- FK: state_id references State(id)
 
-2. Choice (cid, sid, bid)
+2. Choice (cid, roll_num, bid)
 - PK: cid
-- FK: sid references Student(sid)
+- FK: roll_num references Student(roll_num)
 - FK: bid references Branch(bid)
 
 3. Branch (bid, branch_name, duration, degree)
@@ -91,18 +109,18 @@
 - PK: iid
 - FK: state_id references State(id)
 
-6. GovernmentInstitutes (iid, bid, quota, seat_pool, category, or, cr, total_seats, alloated_seats, vacant_seats)
-- PK: iid, bid, quota, seat_pool, category
+6. Josaa (id, iid, bid, quota, seat_pool, gen_or, gen_cr, gen_ews_or, gen_ews_cr, obc_or, obc_cr, sc_or, sc_cr, st_or, st_cr)
+- PK: id
 - FK: iid references Institute(iid)
 - FK: bid references Branch(bid)
 
-7. PrivateInstitutes (iid, bid, or, cr, total_seats, alloated_seats, vacant_seats)
-- PK: iid, bid
+7. Private (id, iid, bid, or, cr)
+- PK: id
 - FK: iid references Institute(iid)
 - FK: bid references Branch(bid)
 
-8. AdmittedStudents (aid, roll_num, iid, bid)
-- PK: aid, roll_num
+8. AdmittedStudents (roll_num, iid, bid)
+- PK: roll_num
 - FK: roll_num references Student(roll_num)
 - FK: iid references Institute(iid)
 - FK: bid references Branch(bid)

@@ -79,7 +79,7 @@ public class Main {
         System.out.println("*****Student Counselling System*****\n");
         Scanner sc = new Scanner(System.in);
         System.out.println("******************************");
-        System.out.print("Enter Username : ");
+        System.out.print("Enter Username (root): ");
         user = sc.next();
         System.out.print("Enter Password : ");
         pass = sc.next();
