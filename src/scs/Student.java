@@ -139,6 +139,29 @@ public class Student {
             }
         }
     }
+    
+    void showPreference(Statement stmt) {
+        showPreference(this.rollNum, stmt);
+    }
+    
+    static void showPreference(Student s, Statement stmt) {
+        addPreference(s.rollNum, stmt);
+    }
+    
+    static void showPreference(int rollNum, Statement stmt) {
+        try {
+            System.out.println();
+            ResultSet rs = stmt.executeQuery("select * from branch\n" +
+                "where bid in (select bid from choice where roll_num = " + rollNum + ");");
+            while(rs.next()) {
+                System.out.println(rs.getInt(1) + " " + rs.getString(2) + " " + rs.getInt(3) + " " + rs.getString(4));
+            }
+            rs.close();
+        }
+        catch(SQLException e){
+            e.printStackTrace();
+        }
+    }
  
     void getResult(Statement stmt) {
         getResult(this, stmt);

@@ -12,85 +12,68 @@ import java.util.Scanner;
  * @author rahul
  */
 public class Main {
-    static String user, pass;
-    static Connection con = null;
-    static Statement stmt = null;
-    
-    static {
-        user = "root";
-        pass = "root";
-    }
-    
-    static void initDB() {
-        try {
-            Scanner data = new Scanner(Main.class.getResourceAsStream("/initDB.txt"));
-            data.useDelimiter("\\Z");
-            stmt.execute(data.next());
-            data.close();
-        }
-        catch(SQLException e){
-            e.printStackTrace();
-        }
-    }
-    
-    static void createDB() {
-        try {
-            Class.forName("com.mysql.cj.jdbc.Driver");
-            con = DriverManager.getConnection("jdbc:mysql://localhost:3306",user,pass);
-            stmt = con.createStatement();  
-            ResultSet rs = stmt.executeQuery("show databases");
-            boolean flag = false;
-            while(rs.next()) {
-                if(rs.getString(1).equals("scs")) {
-                    flag = true;
-                }
-            }
-            rs.close();
-            if(flag) {
-                System.out.println("Database already created!");
-                conDB();
-            }
-            else {
-                System.out.println("Creating Database...");
-                stmt.execute("create database scs");
-                conDB();
-                initDB();
-                System.out.println("Database created successfully...");
-            }  
-        }
-        catch(SQLException e){
-            e.printStackTrace();
-        }
-        catch(Exception e){
-            e.printStackTrace();
-        }
-    }
-    
-    static void conDB() {
-        try {
-            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/scs?allowMultiQueries=true",user,pass);
-            stmt = con.createStatement();
-        }
-        catch(SQLException e){
-            e.printStackTrace();
-        }
-    }
-    public static void main(String[] args) {
-        System.out.println("*****Student Counselling System*****\n");
+    static void studentQueries(MysqlCon obj) {
         Scanner sc = new Scanner(System.in);
-        System.out.println("******************************");
-        System.out.print("Enter Username (root): ");
-        user = sc.next();
-        System.out.print("Enter Password : ");
-        pass = sc.next();
-        System.out.println("******************************\n");
-        System.out.println("Connecting to database...");
-        createDB();
-        System.out.println();
+        int option = 0;
+        while(true) {
+            System.out.println("**************************************************");
+            System.out.println("1. Search for college");
+            System.out.println("2. Get admission");
+            System.out.print("Choose any one of the option: ");
+            option = sc.nextInt();
+            switch(option) {
+                case 1: Student s = new Student();
+                    s.addStudent(obj.stmt);
+                    System.out.println("\n***************Result***************");
+                    s.getResult(obj.stmt);
+                    break;
+                case 2: instituteQueries();
+                    break;
+                case 3: branchQueries();
+                    break;
+                default: System.out.println("Choose appropriate option");
+                    break;
+            }
+            System.out.println("**************************************************");
+        }
+    }
+    
+    static void branchQueries() {
+        
+    }
+    
+    static void instituteQueries() {
+        
+    }
+    
+    public static void main(String[] args) {
+        MysqlCon obj = new MysqlCon();
+        obj.createDB();
+        Scanner sc = new Scanner(System.in);
+        System.out.println("*****Student Counselling System*****\n");
         //----------------------------------------------------------------------
-        Student s = new Student();
-        s.addStudent(stmt);
-        System.out.println("\n***************Result***************");
-        s.getResult(stmt);
+        int option=0;
+        while(true) {
+            System.out.println("**************************************************");
+            System.out.println("1. Queries related to Students");
+            System.out.println("2. Queries related to Institutes");
+            System.out.println("3. Queries related to Branches\n");
+            System.out.print("Choose any one of the option: ");
+            option = sc.nextInt();
+            switch(option) {
+                case 1: studentQueries(obj);
+                    break;
+                case 2: instituteQueries();
+                    break;
+                case 3: branchQueries();
+                    break;
+                default: System.out.println("Choose appropriate option");
+                    break;
+            }
+            System.out.println("**************************************************");
+        }
+        /*
+        
+        */
     }
 }

@@ -17,9 +17,12 @@
     *Methods:*
 - addStudent()
 - addPreference()
+- showPreference()
 - changePreference()
+- removePreference()
 - getResult()
 - getAdmission()
+- changeAdmission()
 - removeStudent()
 - showStudent()
 
