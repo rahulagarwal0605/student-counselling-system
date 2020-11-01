@@ -15,7 +15,6 @@ public class Institute {
     int instituteId;
     String instituteName;
     String city;
-    String state;
     int stateId;
     
     Institute() {

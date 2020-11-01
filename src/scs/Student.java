@@ -16,7 +16,6 @@ public class Student {
     String name;
     String dob;
     int rank;
-    String state;
     int stateId;
     String gender;
     String category;
@@ -33,6 +32,8 @@ public class Student {
         this.gender = gender;
         this.category = category;
     }
+    
+    
     
     void addStudent(Statement stmt) {
         Scanner sc = new Scanner(System.in);
