@@ -19,7 +19,6 @@
 - addPreference()
 - showPreference()
 - changePreference()
-- removePreference()
 - getResult()
 - getAdmission()
 - changeAdmission()
@@ -36,9 +35,9 @@
 
     *Methods:*
 - addBranch()
-- removeBranch()
 - showBranch()
-- showAllBranch();
+- updateBranch()
+- removeBranch()
 
 3. **Institutes**
 

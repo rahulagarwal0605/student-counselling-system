@@ -17,43 +17,45 @@ public class Branch {
     int duration;
     String degree;
     
+    Branch() {
+        
+    }
+    
     Branch(String name, int dur, String deg) {
-        this.branchID = 0;
         this.branchName = name;
         this.duration = dur;
         this.degree = deg;
     }
-
-    static void addBranch(Statement stmt) {
-        String tempName, tempDeg;
-        int tempDur;
+    
+    Branch(Branch b) {
+        this.branchName = b.branchName;
+        this.duration = b.duration;
+        this.degree = b.degree;
+    }
+    
+    void createBranch(){
         Scanner sc = new Scanner(System.in);
         System.out.print("Enter Branch Name: ");
-        tempName = sc.next();
+        this.branchName = sc.nextLine();
         System.out.print("Enter Branch Duration: ");
-        tempDur = sc.nextInt();
+        this.duration = sc.nextInt();
+        sc.nextLine();
         System.out.print("Enter Degree: ");
-        tempDeg = sc.next();
-        sc.close();
-        Branch tempBranch = new Branch(tempName, tempDur, tempDeg);
-        addBranch(tempBranch, stmt);
+        this.degree = sc.nextLine();
     }
     
-    static void addBranch(String name, int dur, String deg, Statement stmt) {
-        Branch b = new Branch(name, dur, deg);
-        addBranch(b, stmt);
-    }
-    
-    static void addBranch(Branch b, Statement stmt){
+    void addBranch(Statement stmt) {
+        this.createBranch();
         try {
-            stmt.execute("insert into branch (branch_name, duration, degree) values ('" + b.branchName + "', " + b.duration + ", '" + b.degree + "')");
+            stmt.execute("insert into branch (branch_name, duration, degree) values ('" + this.branchName + "', " + this.duration + ", '" + this.degree + "')");
+            System.out.println("Branch successfully added!");
         }
         catch(SQLException e) {
             e.printStackTrace();
         }
     }
     
-    static void showAllBranch(Statement stmt) {
+    static void showBranch(Statement stmt) {
         System.out.println("*****Branches*****");
         try {
             ResultSet rs = stmt.executeQuery("select * from branch");
@@ -64,6 +66,36 @@ public class Branch {
             rs.close();
         }
         catch(SQLException e){
+            e.printStackTrace();
+        }
+    }
+    
+    void updateBranch(Statement stmt) {
+        showBranch(stmt);
+        System.out.print("Select branch ID: ");
+        Scanner sc = new Scanner(System.in);
+        this.branchID = sc.nextInt();
+        System.out.println("Enter new details");
+        this.createBranch();
+        try {
+            stmt.execute("update branch set branch_name = '" + this.branchName + "', duration = " + this.duration + ", degree = '" + this.degree + "' where bid = " + this.branchID + ";");
+            System.out.println("Branch successfully updated!");
+        }
+        catch(SQLException e) {
+            e.printStackTrace();
+        }
+    }
+    
+    void removeBranch(Statement stmt) {
+        showBranch(stmt);
+        System.out.println("Select branch ID: ");
+        Scanner sc = new Scanner(System.in);
+        this.branchID = sc.nextInt();
+        try {
+            stmt.execute("delete from branch where bid = " + this.branchID + ";");
+            System.out.println("Branch successfully deleted!");
+        }
+        catch(SQLException e) {
             e.printStackTrace();
         }
     }

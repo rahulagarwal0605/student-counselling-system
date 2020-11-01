@@ -44,13 +44,11 @@ public class MysqlCon {
     
     void createDB() {
         Scanner sc = new Scanner(System.in);
-        System.out.println("******************************");
         System.out.print("Enter Username (root): ");
         user = sc.next();
         System.out.print("Enter Password : ");
         pass = sc.next();
-        System.out.println("******************************\n");
-        System.out.println("Connecting to database...");
+        System.out.println("\nConnecting to database...");
         System.out.println();
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
@@ -78,6 +76,7 @@ public class MysqlCon {
         }
         catch(SQLException e){
             e.printStackTrace();
+            this.createDB();
         }
         catch(Exception e){
             e.printStackTrace();
