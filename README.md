@@ -17,15 +17,11 @@
     *Methods:*
 - createStudent()
 - addStudent()
+- removeStudent()
 - addPreference()
 - showPreference()
-- updatePreference()
 - removePreference()
 - getResult()
-- getAdmission()
-- changeAdmission()
-- removeStudent()
-- showStudent()
 
 2. **Branch**
 
@@ -120,11 +116,5 @@
 
 7. Private (id, iid, bid, or, cr)
 - PK: id
-- FK: iid references Institute(iid)
-- FK: bid references Branch(bid)
-
-8. AdmittedStudents (roll_num, iid, bid)
-- PK: roll_num
-- FK: roll_num references Student(roll_num)
 - FK: iid references Institute(iid)
 - FK: bid references Branch(bid)

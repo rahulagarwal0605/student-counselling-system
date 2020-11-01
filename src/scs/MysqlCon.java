@@ -48,8 +48,7 @@ public class MysqlCon {
         user = sc.next();
         System.out.print("Enter Password : ");
         pass = sc.next();
-        System.out.println("\nConnecting to database...");
-        System.out.println();
+        System.out.println("\nConnecting to database...\n");
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
             con = DriverManager.getConnection("jdbc:mysql://localhost:3306",user,pass);

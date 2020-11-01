@@ -1451,8 +1451,8 @@ CREATE TABLE private(
    id   INTEGER  NOT NULL PRIMARY KEY AUTO_INCREMENT
   ,iid  INTEGER  NOT NULL
   ,bid  INTEGER  NOT NULL
-  ,or   INTEGER 
-  ,cr   INTEGER
+  ,o_rank   INTEGER 
+  ,c_rank   INTEGER
   ,FOREIGN KEY (iid) REFERENCES institute(iid)
   ,FOREIGN KEY (bid) REFERENCES branch(bid)
 );

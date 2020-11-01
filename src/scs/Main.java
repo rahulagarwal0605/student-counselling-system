@@ -15,22 +15,52 @@ public class Main {
     static void studentQueries(MysqlCon obj) {
         Scanner sc = new Scanner(System.in);
         int option;
+        Student s = new Student();
+        System.out.println("\nAdd student details");
+        s.createStudent(obj.stmt);
+        if(s.isRecordExist(obj.stmt)) {
+            System.out.print("Student with this roll number already exists. Do you want to update it (y/n): ");
+            String op = sc.next();
+            if(op.equals("y")) {
+                s.updateStudent(obj.stmt);
+            }
+            else if(!op.equals("n")) {
+                studentQueries(obj);
+            }
+        }
+        else {
+            s.addStudent(obj.stmt);
+        }
         while(true) {
-            System.out.println("**************************************************");
-            System.out.println("1. Search for college");
-            System.out.println("2. Get admission");
+            System.out.println("\n**************************************************");
+            System.out.println("1. Show student details");
+            System.out.println("2. Update student details");
+            System.out.println("3. Show student preferences");
+            System.out.println("4. Add preferences");
+            System.out.println("5. Remove preferences");
+            System.out.println("6. Search for college");
+            System.out.println("7. Back");
+            System.out.println("8. Exit");
+            System.out.println("***************************************************\n");
             System.out.print("Choose any one of the option: ");
             option = sc.nextInt();
             switch(option) {
-                case 1: Student s = new Student();
-                    s.addStudent(obj.stmt);
-                    System.out.println("\n***************Result***************");
-                    s.getResult(obj.stmt);
+                case 1: s.showStudent(obj.stmt);
                     break;
-                default: System.out.println("Choose appropriate option");
+                case 2: s.updateStudent(obj.stmt);
                     break;
+                case 3: s.showPreference(obj.stmt);
+                    break;
+                case 4: s.addPreference(obj.stmt);
+                    break;
+                case 5: s.removePreference(obj.stmt);
+                    break;
+                case 6: s.getResult(obj.stmt);
+                    break;
+                case 7: return;
+                case 8: System.exit(0);
+                default: System.out.println("\nChoose appropriate option");
             }
-            System.out.println("**************************************************\n");
         }
     }
     
@@ -60,11 +90,8 @@ public class Main {
                     break;
                 case 5: return;
                 case 6: System.exit(0);
-                    break;
                 default: System.out.println("\nChoose appropriate option");
-                    break;
             }
-            System.out.println("**************************************************\n");
         }
     }
     
@@ -94,11 +121,8 @@ public class Main {
                     break;
                 case 5: return;
                 case 6: System.exit(0);
-                    break;
                 default: System.out.println("\nChoose appropriate option");
-                    break;
             }
-            System.out.println("**************************************************\n");
         }
     }
     
@@ -112,12 +136,12 @@ public class Main {
         //----------------------------------------------------------------------
         int option=0;
         while(true) {
-            System.out.println("***************************************************");
+            System.out.println("**************************************************");
             System.out.println("1. Student related queries");
             System.out.println("2. Institute related queries");
             System.out.println("3. Branch related queries");
             System.out.println("4. Exit");
-            System.out.println("***************************************************\n");
+            System.out.println("**************************************************\n");
             System.out.print("Choose any one of the option: ");
             option = sc.nextInt();
             switch(option) {
@@ -128,11 +152,8 @@ public class Main {
                 case 3: branchQueries(obj);
                     break;
                 case 4: System.exit(0);
-                    break;
                 default: System.out.println("Choose appropriate option");
-                    break;
             }
-            System.out.println("**************************************************");
         }
     }
 }

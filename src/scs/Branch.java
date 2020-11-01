@@ -48,7 +48,7 @@ public class Branch {
         createBranch();
         try {
             stmt.execute("insert into branch (branch_name, duration, degree) values ('" + branchName + "', " + duration + ", '" + degree + "')");
-            System.out.println("Branch successfully added!");
+            System.out.println("\nBranch added successfully!");
         }
         catch(SQLException e) {
             e.printStackTrace();
@@ -79,7 +79,7 @@ public class Branch {
         createBranch();
         try {
             stmt.execute("update branch set branch_name = '" + branchName + "', duration = " + duration + ", degree = '" + degree + "' where bid = " + branchId + ";");
-            System.out.println("Branch successfully updated!");
+            System.out.println("\nBranch updated successfully!");
         }
         catch(SQLException e) {
             e.printStackTrace();
@@ -93,7 +93,7 @@ public class Branch {
         branchId = sc.nextInt();
         try {
             stmt.execute("delete from branch where bid = " + branchId + ";");
-            System.out.println("Branch successfully deleted!");
+            System.out.println("\nBranch removed successfully!");
         }
         catch(SQLException e) {
             e.printStackTrace();
