@@ -33,12 +33,17 @@ public class Student {
         this.category = category;
     }
     
+    Student(Student s) {
+        this.rollNum = s.rollNum;
+        this.name = s.name;
+        this.dob = s.dob;
+        this.rank = s.rank;
+        this.gender = s.gender;
+        this.category = s.category;
+    }
     
-    
-    void addStudent(Statement stmt) {
+    void createStudent(Statement stmt) {
         Scanner sc = new Scanner(System.in);
-        System.out.println("******************************");
-        System.out.println("Enter Student Details\n");
         System.out.print("Enter Roll Number: ");
         rollNum = sc.nextInt();
         sc.nextLine();
@@ -52,16 +57,6 @@ public class Student {
         gender = sc.next();
         System.out.print("Enter Category (gen/gen_ews/obc/sc/st): ");
         category = sc.next();
-        System.out.println("******************************");
-        addStudent(this, stmt);
-    }
-    
-    static void addStudent(int rollNum, String name, String dob, int rank, String gender, String category, Statement stmt) {
-        Student s = new Student(rollNum, name, dob, rank, gender, category);
-        addStudent(s, stmt);
-    }
-    
-    static void addStudent(Student s, Statement stmt) {
         try {
             System.out.println();
             ResultSet rs = stmt.executeQuery("select * from state");
@@ -73,27 +68,22 @@ public class Student {
         catch(SQLException e){
             e.printStackTrace();
         }
-        System.out.print("\nChoose Home State: ");
-        Scanner sc = new Scanner(System.in);
-        s.stateId = sc.nextInt();
+        System.out.print("\nEnter Home StateID: ");
+        stateId = sc.nextInt();
+    }
+    
+    void addStudent(Statement stmt) {
+        createStudent(stmt);
         try {
-            stmt.execute("insert into student values (" + s.rollNum + ", '" + s.name + "', '" + s.dob + "', " + s.stateId + ", '" + s.gender + "', '" + s.category + "', " + s.rank + ")");
+            stmt.execute("insert into student values (" + rollNum + ", '" + name + "', '" + dob + "', " + stateId + ", '" + gender + "', '" + category + "', " + rank + ")");
         }
         catch(SQLException e) {
             e.printStackTrace();
         }
-        s.addPreference(stmt);
+        addPreference(stmt);
     }
     
     void addPreference(Statement stmt) {
-        addPreference(this.rollNum, stmt);
-    }
-    
-    static void addPreference(Student s, Statement stmt) {
-        addPreference(s.rollNum, stmt);
-    }
-    
-    static void addPreference(int rollNum, Statement stmt) {
         try {
             System.out.println();
             ResultSet rs = stmt.executeQuery("select * from branch");

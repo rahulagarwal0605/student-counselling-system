@@ -34,9 +34,9 @@ public class Institute {
     void createInstitute(Statement stmt) {
         Scanner sc = new Scanner(System.in);
         System.out.print("Enter institution name: ");
-        this.instituteName = sc.nextLine();
+        instituteName = sc.nextLine();
         System.out.print("Enter city: ");
-        this.city = sc.nextLine();
+        city = sc.nextLine();
         try {
             System.out.println();
             ResultSet rs = stmt.executeQuery("select * from state");
@@ -49,13 +49,13 @@ public class Institute {
             e.printStackTrace();
         }
         System.out.print("\nEnter stateID: ");
-        this.stateId = sc.nextInt();
+        stateId = sc.nextInt();
     }
     
     void addInstitute(Statement stmt) {
-        this.createInstitute(stmt);
+        createInstitute(stmt);
         try {
-            stmt.execute("insert into institute (institute_name, city, state_id) values ('" + this.instituteName + "', '" + this.city + "', " + this.stateId + ");");
+            stmt.execute("insert into institute (institute_name, city, state_id) values ('" + instituteName + "', '" + city + "', " + stateId + ");");
             System.out.println("\nInstitute added successfully!");
         }
         catch(SQLException e) {
@@ -82,11 +82,11 @@ public class Institute {
         showInstitute(stmt);
         System.out.print("Select institute ID: ");
         Scanner sc = new Scanner(System.in);
-        this.instituteId = sc.nextInt();
+        instituteId = sc.nextInt();
         System.out.println("\nEnter new details");
-        this.createInstitute(stmt);
+        createInstitute(stmt);
         try {
-            stmt.execute("update institute set institute_name = '" + this.instituteName + "', city = '" + this.city + "', state_id = " + this.stateId + " where iid = " + this.instituteId + ";");
+            stmt.execute("update institute set institute_name = '" + instituteName + "', city = '" + city + "', state_id = " + stateId + " where iid = " + instituteId + ";");
             System.out.println("\nInstitute updated successfully!");
         }
         catch(SQLException e) {
@@ -98,9 +98,9 @@ public class Institute {
         showInstitute(stmt);
         System.out.print("Select institute ID: ");
         Scanner sc = new Scanner(System.in);
-        this.instituteId = sc.nextInt();
+        instituteId = sc.nextInt();
         try {
-            stmt.execute("delete from institute where iid = " + this.instituteId + ";");
+            stmt.execute("delete from institute where iid = " + instituteId + ";");
             System.out.println("\nInstitute removed successfully!");
         }
         catch(SQLException e) {

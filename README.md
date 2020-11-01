@@ -15,10 +15,12 @@
 - category: String
 
     *Methods:*
+- createStudent()
 - addStudent()
 - addPreference()
 - showPreference()
-- changePreference()
+- updatePreference()
+- removePreference()
 - getResult()
 - getAdmission()
 - changeAdmission()
