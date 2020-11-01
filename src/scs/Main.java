@@ -27,12 +27,10 @@ public class Main {
                     System.out.println("\n***************Result***************");
                     s.getResult(obj.stmt);
                     break;
-                case 2: instituteQueries();
-                    break;
                 default: System.out.println("Choose appropriate option");
                     break;
             }
-            System.out.println("**************************************************");
+            System.out.println("**************************************************\n");
         }
     }
     
@@ -66,20 +64,50 @@ public class Main {
                 default: System.out.println("\nChoose appropriate option");
                     break;
             }
-            System.out.println("**************************************************");
+            System.out.println("**************************************************\n");
         }
     }
     
-    static void instituteQueries() {
-        
+    static void instituteQueries(MysqlCon obj) {
+        Scanner sc = new Scanner(System.in);
+        int option;
+        Institute i = new Institute();
+        while(true) {
+            System.out.println("\n***************************************************");
+            System.out.println("1. Add new Institute");
+            System.out.println("2. Show all Institute");
+            System.out.println("3. Update Institute");
+            System.out.println("4. Remove Institute");
+            System.out.println("5. Back");
+            System.out.println("6. Exit");
+            System.out.println("***************************************************\n");
+            System.out.print("Choose any one of the option: ");
+            option = sc.nextInt();
+            switch(option) {
+                case 1: i.addInstitute(obj.stmt);
+                    break;
+                case 2: Institute.showInstitute(obj.stmt);
+                    break;
+                case 3: i.updateInstitute(obj.stmt);
+                    break;
+                case 4: i.removeInstitute(obj.stmt);
+                    break;
+                case 5: return;
+                case 6: System.exit(0);
+                    break;
+                default: System.out.println("\nChoose appropriate option");
+                    break;
+            }
+            System.out.println("**************************************************\n");
+        }
     }
     
     public static void main(String[] args) {
         System.out.println("\n************Student Counselling System************\n");
-        System.out.println("***************************************************");
+        System.out.println("**************************************************");
         MysqlCon obj = new MysqlCon();
         obj.createDB();
-        System.out.println("***************************************************\n");
+        System.out.println("**************************************************\n");
         Scanner sc = new Scanner(System.in);
         //----------------------------------------------------------------------
         int option=0;
@@ -95,7 +123,7 @@ public class Main {
             switch(option) {
                 case 1: studentQueries(obj);
                     break;
-                case 2: instituteQueries();
+                case 2: instituteQueries(obj);
                     break;
                 case 3: branchQueries(obj);
                     break;
@@ -106,8 +134,5 @@ public class Main {
             }
             System.out.println("**************************************************");
         }
-        /*
-        
-        */
     }
 }

@@ -12,7 +12,7 @@ import java.sql.*;
  * @author rahul
  */
 public class Branch {
-    int branchID;
+    int branchId;
     String branchName;
     int duration;
     String degree;
@@ -35,12 +35,12 @@ public class Branch {
     
     void createBranch(){
         Scanner sc = new Scanner(System.in);
-        System.out.print("Enter Branch Name: ");
+        System.out.print("Enter branch name: ");
         this.branchName = sc.nextLine();
-        System.out.print("Enter Branch Duration: ");
+        System.out.print("Enter branch duration: ");
         this.duration = sc.nextInt();
         sc.nextLine();
-        System.out.print("Enter Degree: ");
+        System.out.print("Enter degree: ");
         this.degree = sc.nextLine();
     }
     
@@ -56,7 +56,7 @@ public class Branch {
     }
     
     static void showBranch(Statement stmt) {
-        System.out.println("*****Branches*****");
+        System.out.println("\n*********************Branches*********************");
         try {
             ResultSet rs = stmt.executeQuery("select * from branch");
             while(rs.next()) {
@@ -74,11 +74,11 @@ public class Branch {
         showBranch(stmt);
         System.out.print("Select branch ID: ");
         Scanner sc = new Scanner(System.in);
-        this.branchID = sc.nextInt();
+        this.branchId = sc.nextInt();
         System.out.println("Enter new details");
         this.createBranch();
         try {
-            stmt.execute("update branch set branch_name = '" + this.branchName + "', duration = " + this.duration + ", degree = '" + this.degree + "' where bid = " + this.branchID + ";");
+            stmt.execute("update branch set branch_name = '" + this.branchName + "', duration = " + this.duration + ", degree = '" + this.degree + "' where bid = " + this.branchId + ";");
             System.out.println("Branch successfully updated!");
         }
         catch(SQLException e) {
@@ -90,9 +90,9 @@ public class Branch {
         showBranch(stmt);
         System.out.println("Select branch ID: ");
         Scanner sc = new Scanner(System.in);
-        this.branchID = sc.nextInt();
+        this.branchId = sc.nextInt();
         try {
-            stmt.execute("delete from branch where bid = " + this.branchID + ";");
+            stmt.execute("delete from branch where bid = " + this.branchId + ";");
             System.out.println("Branch successfully deleted!");
         }
         catch(SQLException e) {

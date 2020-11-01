@@ -34,6 +34,7 @@
 - degree: String
 
     *Methods:*
+- createBranch()
 - addBranch()
 - showBranch()
 - updateBranch()
@@ -48,10 +49,11 @@
 - state: String
 
     *Methods:*
+- createInstitute()
 - addInstitute()
-- removeInstitute()
 - showInstitute()
-- showAllInstitute()
+- updateInstitute()
+- removeInstitute()
 
 4. **GovernmentInstitutes extends Institutes**
 
