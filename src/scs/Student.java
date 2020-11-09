@@ -44,11 +44,9 @@ public class Student {
     
     void createStudent(Statement stmt) {
         Scanner sc = new Scanner(System.in);
-        if(rollNum == 0) {
-            System.out.print("Enter Roll Number: ");
-            rollNum = sc.nextInt();
-            sc.nextLine();
-        }
+        System.out.print("Enter Roll Number: ");
+        rollNum = sc.nextInt();
+        sc.nextLine();
         System.out.print("Enter Name: ");
         name = sc.nextLine();
         System.out.print("Enter Date of Birth (YYYY-MM-DD): ");
@@ -121,7 +119,6 @@ public class Student {
     }
     
     void updateStudent(Statement stmt) {
-        createStudent(stmt);
         try {
             stmt.execute("update student set name = '" + name + "', dob = '" + dob + "', state_id = " + stateId + ", gender = '" + gender + "', category = '" + category + "', exam_rank = " + rank + " where roll_num = " + rollNum + ";");
         }
@@ -235,6 +232,7 @@ public class Student {
     }
     
     void getResult(Statement stmt) {
+        boolean flag = false;
         try {
             System.out.println();
             if(gender.equals("F")) {
@@ -250,6 +248,7 @@ public class Student {
                     "		where roll_Num = " + rollNum + ")) as bra on josaa.bid = bra.bid)\n" +
                     "where quota in ('HS', 'AI') and seat_pool in ('Gender-Neutral','Female-Only') and " + category + "_cr >= " + rank + ";");
                 while(rs.next()) {
+                    flag = true;
                     System.out.println("Institute Name - " + " " + rs.getString(1) + "\nCity - " + rs.getString(2) + "\nState - " + rs.getString(3) + "\nBranch Name - " + rs.getString(4) + "\nDuration - " + rs.getInt(5) + "\nDegree - " + rs.getString(6) + "\nQuota - " + rs.getString(7) + "\nSeat Pool - " + rs.getString(8) + "\nOpening Rank - " + rs.getInt(9) + "\nClosing Rank - " + rs.getInt(10) + "\n");
                 }
                 rs = stmt.executeQuery(
@@ -264,6 +263,7 @@ public class Student {
                     "		where roll_Num = " + rollNum + ")) as bra on josaa.bid = bra.bid)\n" +
                     "where quota in ('OS') and seat_pool in ('Gender-Neutral','Female-Only') and " + category + "_cr >= " + rank + ";");
                 while(rs.next()) {
+                    flag = true;
                     System.out.println("Institute Name - " + " " + rs.getString(1) + "\nCity - " + rs.getString(2) + "\nState - " + rs.getString(3) + "\nBranch Name - " + rs.getString(4) + "\nDuration - " + rs.getInt(5) + "\nDegree - " + rs.getString(6) + "\nQuota - " + rs.getString(7) + "\nSeat Pool - " + rs.getString(8) + "\nOpening Rank - " + rs.getInt(9) + "\nClosing Rank - " + rs.getInt(10) + "\n");
                 }
                 rs.close();
@@ -281,6 +281,7 @@ public class Student {
                     "		where roll_Num = " + rollNum + ")) as bra on josaa.bid = bra.bid)\n" +
                     "where quota in ('HS', 'AI') and seat_pool = 'Gender-Neutral' and " + category + "_cr >= " + rank + ";");
                 while(rs.next()) {
+                    flag = true;
                     System.out.println("Institute Name - " + " " + rs.getString(1) + "\nCity - " + rs.getString(2) + "\nState - " + rs.getString(3) + "\nBranch Name - " + rs.getString(4) + "\nDuration - " + rs.getInt(5) + "\nDegree - " + rs.getString(6) + "\nQuota - " + rs.getString(7) + "\nSeat Pool - " + rs.getString(8) + "\nOpening Rank - " + rs.getInt(9) + "\nClosing Rank - " + rs.getInt(10) + "\n");
                 }
                 rs = stmt.executeQuery(
@@ -295,9 +296,13 @@ public class Student {
                     "		where roll_Num = " + rollNum + ")) as bra on josaa.bid = bra.bid)\n" +
                     "where quota in ('OS') and seat_pool = 'Gender-Neutral' and " + category + "_cr >= " + rank + ";");
                 while(rs.next()) {
+                    flag = true;
                     System.out.println("Institute Name - " + " " + rs.getString(1) + "\nCity - " + rs.getString(2) + "\nState - " + rs.getString(3) + "\nBranch Name - " + rs.getString(4) + "\nDuration - " + rs.getInt(5) + "\nDegree - " + rs.getString(6) + "\nQuota - " + rs.getString(7) + "\nSeat Pool - " + rs.getString(8) + "\nOpening Rank - " + rs.getInt(9) + "\nClosing Rank - " + rs.getInt(10) + "\n");
                 }
                 rs.close();
+            }
+            if(!flag) {
+                System.out.println("Sorry no branch is allocated to you!");
             }
         }
         catch(SQLException e){
