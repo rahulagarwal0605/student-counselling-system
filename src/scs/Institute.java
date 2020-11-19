@@ -100,6 +100,7 @@ public class Institute {
         Scanner sc = new Scanner(System.in);
         instituteId = sc.nextInt();
         try {
+            stmt.execute("delete from josaa where iid = " + instituteId + ";");
             stmt.execute("delete from institute where iid = " + instituteId + ";");
             System.out.println("\nInstitute removed successfully!");
         }

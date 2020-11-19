@@ -92,6 +92,8 @@ public class Branch {
         Scanner sc = new Scanner(System.in);
         branchId = sc.nextInt();
         try {
+            stmt.execute("delete from josaa where bid = " + branchId + ";");
+            stmt.execute("delete from choice where bid = " + branchId + ";");
             stmt.execute("delete from branch where bid = " + branchId + ";");
             System.out.println("\nBranch removed successfully!");
         }
