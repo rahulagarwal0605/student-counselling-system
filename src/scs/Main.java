@@ -17,7 +17,9 @@ public class Main {
         int option;
         Student s = new Student();
         System.out.println("\nAdd student details");
-        s.createStudent(obj.stmt);
+        System.out.print("Enter Roll Number: ");
+        s.rollNum = sc.nextInt();
+        sc.nextLine();
         if(s.isRecordExist(obj.stmt)) {
             System.out.print("Student with this roll number already exists. Do you want to update it (y/n): ");
             String op = sc.next();
@@ -29,6 +31,7 @@ public class Main {
             }
         }
         else {
+            s.createStudent(obj.stmt);
             s.addStudent(obj.stmt);
         }
         while(true) {

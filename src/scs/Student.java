@@ -44,9 +44,11 @@ public class Student {
     
     void createStudent(Statement stmt) {
         Scanner sc = new Scanner(System.in);
-        System.out.print("Enter Roll Number: ");
-        rollNum = sc.nextInt();
-        sc.nextLine();
+        if(rollNum == 0) {
+            System.out.print("Enter Roll Number: ");
+            rollNum = sc.nextInt();
+            sc.nextLine();
+        }
         System.out.print("Enter Name: ");
         name = sc.nextLine();
         System.out.print("Enter Date of Birth (YYYY-MM-DD): ");
@@ -119,6 +121,7 @@ public class Student {
     }
     
     void updateStudent(Statement stmt) {
+        createStudent(stmt);
         try {
             stmt.execute("update student set name = '" + name + "', dob = '" + dob + "', state_id = " + stateId + ", gender = '" + gender + "', category = '" + category + "', exam_rank = " + rank + " where roll_num = " + rollNum + ";");
         }
