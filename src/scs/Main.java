@@ -4,7 +4,6 @@
  * and open the template in the editor.
  */
 package scs;
-import java.sql.*;
 import java.util.Scanner;
 
 /**
@@ -137,7 +136,7 @@ public class Main {
         System.out.println("**************************************************\n");
         Scanner sc = new Scanner(System.in);
         //----------------------------------------------------------------------
-        int option=0;
+        int option;
         while(true) {
             System.out.println("**************************************************");
             System.out.println("1. Student related queries");

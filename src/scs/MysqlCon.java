@@ -38,7 +38,7 @@ public class MysqlCon {
             data.close();
         }
         catch(SQLException e){
-            e.printStackTrace();
+            System.out.println("\nError!");
         }
     }
     
@@ -74,11 +74,11 @@ public class MysqlCon {
             }  
         }
         catch(SQLException e){
-            e.printStackTrace();
+            System.out.println("\nError!");
             this.createDB();
         }
-        catch(Exception e){
-            e.printStackTrace();
+        catch(ClassNotFoundException e){
+            System.out.println("\nError!");
         }
     }
     
@@ -88,7 +88,7 @@ public class MysqlCon {
             stmt = con.createStatement();
         }
         catch(SQLException e){
-            e.printStackTrace();
+            System.out.println("\nError!");
         }
     }
 }

@@ -68,7 +68,7 @@ public class Student {
             rs.close();
         }
         catch(SQLException e){
-            e.printStackTrace();
+            System.out.println("\nError!");
         }
         System.out.print("\nEnter Home StateID: ");
         stateId = sc.nextInt();
@@ -79,7 +79,7 @@ public class Student {
             stmt.execute("insert into student values (" + rollNum + ", '" + name + "', '" + dob + "', " + stateId + ", '" + gender + "', '" + category + "', " + rank + ")");
         }
         catch(SQLException e) {
-            e.printStackTrace();
+            System.out.println("\nError!");
         }
         addPreference(stmt);
         System.out.println("\nStudent added successfully!");
@@ -95,7 +95,7 @@ public class Student {
             rs.close();
         }
         catch(SQLException e){
-            e.printStackTrace();
+            System.out.println("\nError!");
         }
         System.out.println("\n********************Preferences*****************************");
         showPreference(stmt);
@@ -105,17 +105,12 @@ public class Student {
         try {
             ResultSet rs = stmt.executeQuery("select count(roll_num) from student where roll_num = " + rollNum);
             while(rs.next()) {
-                if(rs.getInt(1) == 1) {
-                    return true;
-                }
-                else {
-                    return false;
-                }
+                return rs.getInt(1) == 1;
             }
             rs.close();
         }
         catch(SQLException e){
-            e.printStackTrace();
+            System.out.println("\nError!");
         }
         return false;
     }
@@ -126,7 +121,7 @@ public class Student {
             stmt.execute("update student set name = '" + name + "', dob = '" + dob + "', state_id = " + stateId + ", gender = '" + gender + "', category = '" + category + "', exam_rank = " + rank + " where roll_num = " + rollNum + ";");
         }
         catch(SQLException e) {
-            e.printStackTrace();
+            System.out.println("\nError!");
         }
         System.out.println("\nStudent updated successfully!");
     }
@@ -137,7 +132,7 @@ public class Student {
                 "delete from choice where roll_num = " + rollNum + ";");
         }
         catch(SQLException e) {
-            e.printStackTrace();
+            System.out.println("\nError!");
         }
         System.out.println("\nStudent removed successfully!");
     }
@@ -153,7 +148,7 @@ public class Student {
             rs.close();
         }
         catch(SQLException e){
-            e.printStackTrace();
+            System.out.println("\nError!");
         }
         System.out.print("\nEnter total count of your preferred branches (Choose 0 to select all): ");
         int count = sc.nextInt();
@@ -164,7 +159,7 @@ public class Student {
                 stmt.execute("insert into choice (roll_num, bid)  values (" + rollNum + ", " + id + ")");
             }
             catch(SQLException e) {
-                e.printStackTrace();
+                System.out.println("\nError!");
             }
         }
         if(count == 0) {
@@ -185,24 +180,22 @@ public class Student {
                 }
             }
             catch(SQLException e) {
-                e.printStackTrace();
+                System.out.println("\nError!");
             }
         }
     }
     
     void showPreference(Statement stmt) {
-        Scanner sc = new Scanner(System.in);
         try {
             System.out.println();
-            ResultSet rs = stmt.executeQuery("select * from branch\n" +
-                "where bid in (select bid from choice where roll_num = " + rollNum + ");");
+            ResultSet rs = stmt.executeQuery("select * from branch\n" + "where bid in (select bid from choice where roll_num =" + rollNum + ");");
             while(rs.next()) {
                 System.out.println(rs.getInt(1) + " " + rs.getString(2) + " " + rs.getInt(3) + " " + rs.getString(4));
             }
             rs.close();
         }
         catch(SQLException e){
-            e.printStackTrace();
+            System.out.println("\nError!");
         }
     }
     
@@ -210,15 +203,14 @@ public class Student {
         Scanner sc = new Scanner(System.in);
         try {
             System.out.println();
-            ResultSet rs = stmt.executeQuery("select * from branch\n" +
-                "where bid in (select bid from choice where roll_num = " + rollNum + ");");
+            ResultSet rs = stmt.executeQuery("select * from branch\n" + "where bid in (select bid from choice where roll_num =" + rollNum + ");");
             while(rs.next()) {
                 System.out.println(rs.getInt(1) + " " + rs.getString(2) + " " + rs.getInt(3) + " " + rs.getString(4));
             }
             rs.close();
         }
         catch(SQLException e){
-            e.printStackTrace();
+            System.out.println("\nError!");
         }
         System.out.print("\nEnter total number of branches you want to remove: ");
         int count = sc.nextInt();
@@ -229,7 +221,7 @@ public class Student {
                 stmt.execute("delete from choice where roll_num = " + rollNum + " and bid = " + id);
             }
             catch(SQLException e) {
-                e.printStackTrace();
+                System.out.println("\nError!");
             }
         }
     }
@@ -309,7 +301,7 @@ public class Student {
             }
         }
         catch(SQLException e){
-            e.printStackTrace();
+            System.out.println("\nError!");
         }
     }
 }

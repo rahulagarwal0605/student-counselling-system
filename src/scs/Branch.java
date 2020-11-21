@@ -51,10 +51,11 @@ public class Branch {
             System.out.println("\nBranch added successfully!");
         }
         catch(SQLException e) {
-            e.printStackTrace();
+            System.out.println("\nError!");
         }
     }
     
+    @SuppressWarnings("ConvertToTryWithResources")
     static void showBranch(Statement stmt) {
         System.out.println("\n*********************Branches*********************");
         try {
@@ -66,7 +67,7 @@ public class Branch {
             rs.close();
         }
         catch(SQLException e){
-            e.printStackTrace();
+            System.out.println("\nError!");
         }
     }
     
@@ -82,7 +83,7 @@ public class Branch {
             System.out.println("\nBranch updated successfully!");
         }
         catch(SQLException e) {
-            e.printStackTrace();
+            System.out.println("\nError!");
         }
     }
     
@@ -98,7 +99,7 @@ public class Branch {
             System.out.println("\nBranch removed successfully!");
         }
         catch(SQLException e) {
-            e.printStackTrace();
+            System.out.println("\nError!");
         }
     }
 }

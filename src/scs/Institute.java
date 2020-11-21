@@ -31,6 +31,7 @@ public class Institute {
         this.city = i.city;
     }
     
+    @SuppressWarnings("ConvertToTryWithResources")
     void createInstitute(Statement stmt) {
         Scanner sc = new Scanner(System.in);
         System.out.print("Enter institution name: ");
@@ -46,7 +47,7 @@ public class Institute {
             rs.close();
         }
         catch(SQLException e){
-            e.printStackTrace();
+            System.out.println("\nError!");
         }
         System.out.print("\nEnter stateID: ");
         stateId = sc.nextInt();
@@ -59,7 +60,7 @@ public class Institute {
             System.out.println("\nInstitute added successfully!");
         }
         catch(SQLException e) {
-            e.printStackTrace();
+            System.out.println("\nError!");
         }
     }
     
@@ -74,7 +75,7 @@ public class Institute {
             rs.close();
         }
         catch(SQLException e){
-            e.printStackTrace();
+            System.out.println("\nError!");
         }
     }
     
@@ -90,7 +91,7 @@ public class Institute {
             System.out.println("\nInstitute updated successfully!");
         }
         catch(SQLException e) {
-            e.printStackTrace();
+            System.out.println("\nError!");
         }
     }
     
@@ -105,7 +106,7 @@ public class Institute {
             System.out.println("\nInstitute removed successfully!");
         }
         catch(SQLException e) {
-            e.printStackTrace();
+            System.out.println("\nError!");
         }
     }
 }
